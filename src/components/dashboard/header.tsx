@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { LogoIcon } from "@/components/icons/logo";
 import { useTheme } from "next-themes";
 import * as React from "react";
+import { LogoLightIcon } from "../icons/logo-light";
 
 export function DashboardHeader() {
   const pathname = usePathname();
@@ -27,7 +28,7 @@ export function DashboardHeader() {
 
   return (
     <header className="flex justify-between items-center py-4 mb-4 md:mb-8">
-      <LogoIcon className="h-8 w-auto" />
+      {mounted && theme === 'light' ? <LogoLightIcon className="h-8 w-auto" /> : <LogoIcon className="h-8 w-auto" />}
       <nav className="flex items-center space-x-4 md:space-x-6">
         {navLinks.map((link) => (
           <Link
