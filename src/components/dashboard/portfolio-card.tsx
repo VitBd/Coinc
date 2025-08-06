@@ -58,9 +58,11 @@ type Asset = {
   usdValue: string;
   dailyProfitLossPercent: string;
   dailyProfitLoss: string;
-  fourteenDayApy: string;
+  sevenDayApy: string;
   thirtyDayApy: string;
-  sixtyDayApy: string;
+  ninetyDayApy: string;
+  oneHundredEightyDayApy: string;
+  oneYearApy: string;
   totalProfitLoss: string;
 };
 
@@ -192,9 +194,11 @@ export function PortfolioCard({
                     <span className="text-primary">{asset.dailyProfitLossPercent}%</span> / {dailyProfitLossValue} {asset.name}
                   </span>
                 </InfoRow>
-                <InfoRow label="14-Day APY" value={`${asset.fourteenDayApy}%`} valueClassName="text-foreground" />
+                <InfoRow label="7-Day APY" value={`${asset.sevenDayApy}%`} valueClassName="text-foreground" />
                 <InfoRow label="30-Day APY" value={`${asset.thirtyDayApy}%`} valueClassName="text-foreground" />
-                <InfoRow label="60-Day APY" value={`${asset.sixtyDayApy}%`} valueClassName="text-foreground" />
+                <InfoRow label="90-Day APY" value={`${asset.ninetyDayApy}%`} valueClassName="text-foreground" />
+                <InfoRow label="180-Day APY" value={`${asset.oneHundredEightyDayApy}%`} valueClassName="text-foreground" />
+                <InfoRow label="1-Year APY" value={`${asset.oneYearApy}%`} valueClassName="text-foreground" />
                 <InfoRow label="Total Profit/Loss" value={`${asset.totalProfitLoss}`} valueClassName="text-primary" />
                 <InfoRow label="Strategy Allocations">
                     <DialogTrigger asChild>
