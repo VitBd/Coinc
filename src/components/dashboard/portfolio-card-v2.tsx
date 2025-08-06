@@ -177,7 +177,7 @@ export function PortfolioCardV2({
                     <div className="flex-grow">
                         <CardTitle className="text-lg font-bold text-foreground">
                             <DialogTrigger asChild>
-                                <a href="#" className="flex items-center text-[#00CCFF] hover:underline">
+                                <a href="#" className="flex items-center text-[color:var(--link-color)] hover:underline">
                                     {risk} <ArrowUpRight className="ml-1 h-5 w-5" />
                                 </a>
                             </DialogTrigger>
@@ -215,7 +215,7 @@ export function PortfolioCardV2({
                 <div className="flex justify-between items-center">
                     <h4 className="font-bold text-sm text-foreground py-2">Historic Performance</h4>
                     <CollapsibleTrigger asChild>
-                        <button className="text-sm font-normal text-[#00CCFF] hover:underline">
+                        <button className="text-sm font-normal text-[color:var(--link-color)] hover:underline">
                           {isExpanded ? 'collapse' : 'expand'}
                         </button>
                     </CollapsibleTrigger>

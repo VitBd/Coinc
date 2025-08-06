@@ -159,7 +159,7 @@ export function PortfolioCard({
                     <CardTitle className="w-4/5 text-base font-bold text-foreground">
                         {risk}
                     </CardTitle>
-                    <div className="flex items-center text-sm font-normal text-[#00CCFF] hover:underline self-start">
+                    <div className="flex items-center text-sm font-normal text-[color:var(--link-color)] hover:underline self-start">
                         Portfolio <ArrowUpRight className="ml-1 h-5 w-5" />
                     </div>
                 </div>
@@ -196,7 +196,7 @@ export function PortfolioCard({
                 <InfoRow label="Total Profit/Loss" value={`${asset.totalProfitLoss}`} valueClassName="text-primary" />
                 <InfoRow label="Strategy Allocations">
                     <DialogTrigger asChild>
-                    <button className="font-semibold text-[#00CCFF] hover:underline">
+                    <button className="font-semibold text-[color:var(--link-color)] hover:underline">
                         View Details →
                     </button>
                     </DialogTrigger>
