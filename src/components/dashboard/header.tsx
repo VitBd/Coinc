@@ -2,13 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Moon } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LogoIcon } from "@/components/icons/logo";
+import { useTheme } from "next-themes";
+import * as React from "react";
 
 export function DashboardHeader() {
   const pathname = usePathname();
+  const { setTheme, theme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navLinks = [
     { href: "/", label: "Dashboard" },
@@ -33,8 +41,17 @@ export function DashboardHeader() {
             {link.label}
           </Link>
         ))}
-        <Button variant="ghost" size="icon" className="rounded-full h-9 w-9">
-          <Moon className="h-4 w-4" />
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="rounded-full h-9 w-9"
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        >
+          {mounted ? (
+            theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />
+          ) : (
+            <div className="h-4 w-4" />
+          )}
           <span className="sr-only">Toggle theme</span>
         </Button>
         <Button>Invest</Button>
