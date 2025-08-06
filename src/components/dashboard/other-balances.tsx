@@ -30,7 +30,7 @@ export function OtherBalances() {
       <CardContent className="flex flex-1 flex-col">
         <div className="flex flex-1 flex-col justify-around space-y-4">
           {balanceItems.map((item, index) => (
-            <div key={item.title} className="group flex cursor-pointer items-center justify-between rounded-md p-2 transition-colors hover:bg-secondary/50">
+            <div key={item.title} className="group flex cursor-pointer items-center justify-between rounded-md p-2 transition-colors hover:bg-secondary">
               <div className="flex items-center gap-4">
                 {item.icon}
                 <div>
@@ -38,7 +38,7 @@ export function OtherBalances() {
                   <p className="text-sm text-muted-foreground">{item.amount}</p>
                 </div>
               </div>
-              <div className="rounded-md p-2 transition-colors group-hover:bg-[#add8e6]">
+              <div className="rounded-md p-2 transition-colors group-hover:bg-background">
                 <ChevronRight className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-foreground" />
               </div>
             </div>

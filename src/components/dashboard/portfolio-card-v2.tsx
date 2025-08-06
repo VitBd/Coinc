@@ -171,15 +171,15 @@ export function PortfolioCardV2({
     <Dialog>
     <Card className="flex flex-col overflow-hidden !rounded-lg border-border/30 bg-card">
         <CardHeader className="p-0">
-            <div className="bg-[#35393C] px-5 py-4">
+            <div className="bg-muted px-5 py-4">
                  <div className="flex items-center gap-4">
                     {AssetIcon && <AssetIcon className="h-16 w-16" />}
                     <div className="flex-grow">
                         <CardTitle className="text-lg font-bold text-foreground">
                             <DialogTrigger asChild>
-                                <a href="#" className="flex items-center text-[color:var(--link-color)] hover:underline">
+                                <Button variant="link" className="p-0 h-auto text-lg">
                                     {risk} <ArrowUpRight className="ml-1 h-5 w-5" />
-                                </a>
+                                </Button>
                             </DialogTrigger>
                         </CardTitle>
                         <Separator className="my-1 bg-border/20" />
@@ -215,9 +215,9 @@ export function PortfolioCardV2({
                 <div className="flex justify-between items-center">
                     <h4 className="font-bold text-sm text-foreground py-2">Historic Performance</h4>
                     <CollapsibleTrigger asChild>
-                        <button className="text-sm font-normal text-[color:var(--link-color)] hover:underline">
+                        <Button variant="link" className="text-sm p-0 h-auto">
                           {isExpanded ? 'collapse' : 'expand'}
-                        </button>
+                        </Button>
                     </CollapsibleTrigger>
                 </div>
                 <div className="h-px bg-border" />
@@ -239,7 +239,7 @@ export function PortfolioCardV2({
                 {isOwned ? "+ Add Funds" : "Subscribe"}
             </Button>
             {isOwned ? (
-                 <Button className="h-12 flex-[2] rounded-md bg-[#35393C] text-sm font-medium text-foreground hover:bg-secondary/80">
+                 <Button variant="secondary" className="h-12 flex-[2] rounded-md text-sm font-medium text-foreground hover:bg-secondary/80">
                     Transfer Out to Trade account
                  </Button>
             ) : (
@@ -248,7 +248,7 @@ export function PortfolioCardV2({
                     <TooltipTrigger asChild>
                       <span className="flex-[2]" tabIndex={0}>
                         <Button 
-                            className="h-12 w-full rounded-md bg-[#35393C] text-sm font-medium text-foreground hover:bg-secondary/80"
+                            className="h-12 w-full rounded-md text-sm font-medium text-foreground"
                             variant="secondary" 
                             disabled={!isOwned}
                             onClick={!isOwned ? onShowToast : undefined}
@@ -301,7 +301,7 @@ export function PortfolioCardV2({
                         <div className="rounded-md border mt-4">
                         <Table>
                             <TableHeader>
-                                <TableRow className="bg-secondary/30">
+                                <TableRow className="bg-muted">
                                     <TableHead className="font-semibold text-muted-foreground whitespace-nowrap text-sm">Strategy Type</TableHead>
                                     <TableHead className="text-right font-semibold text-muted-foreground whitespace-nowrap text-sm">Low-Risk BTC</TableHead>
                                     <TableHead className="text-right font-semibold text-muted-foreground whitespace-nowrap text-sm">Mid-Risk BTC</TableHead>
@@ -317,7 +317,7 @@ export function PortfolioCardV2({
                                 ))}
                             </TableBody>
                             <TableFooter>
-                                <TableRow className="bg-secondary/30">
+                                <TableRow className="bg-muted">
                                     <TableCell className="font-bold text-muted-foreground text-sm">Total</TableCell>
                                     <TableCell className="text-right font-bold text-foreground text-sm">100%</TableCell>
                                     <TableCell className="text-right font-bold text-foreground text-sm">100%</TableCell>

@@ -24,6 +24,7 @@ import { BtcIcon, EthIcon, UsdcIcon } from "@/components/icons/crypto-icons";
 import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 
 const transactions = [
@@ -85,9 +86,9 @@ export function RecentTransactions() {
             <CardTitle>Recent Transactions</CardTitle>
             <CardDescription>Your most recent deposits and yields.</CardDescription>
         </div>
-        <Link href="#" className="text-sm font-medium text-primary hover:underline">
-            View All
-        </Link>
+        <Button variant="link" asChild>
+            <Link href="#">View All</Link>
+        </Button>
       </CardHeader>
       <CardContent>
         <Table>
@@ -121,7 +122,7 @@ export function RecentTransactions() {
                 </TableCell>
                 <TableCell className="font-semibold">{transaction.apy}</TableCell>
                 <TableCell>
-                    <Badge variant="secondary" className="bg-secondary/50 font-medium">
+                    <Badge variant="secondary" className="font-medium">
                         {transaction.chain}
                     </Badge>
                 </TableCell>
@@ -132,9 +133,9 @@ export function RecentTransactions() {
                 <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <button className="group rounded-md p-2 transition-colors hover:bg-[#add8e6]">
+                        <Button variant="ghost" size="icon" className="group rounded-md p-2 transition-colors hover:bg-background">
                             <MoreHorizontal className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-foreground" />
-                        </button>
+                        </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem>View Details</DropdownMenuItem>

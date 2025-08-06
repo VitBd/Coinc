@@ -101,7 +101,7 @@ export function CashAccount() {
       <CardContent className="p-6 pt-0">
         <Table>
           <TableHeader>
-            <TableRow className="border-b-0 bg-muted/50 hover:bg-muted/50">
+            <TableRow className="border-b-0 bg-muted hover:bg-muted">
               <TableHead>Currency</TableHead>
               <TableHead>Balance</TableHead>
               <TableHead>Pending Deposit</TableHead>

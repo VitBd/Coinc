@@ -154,13 +154,15 @@ export function PortfolioCard({
     <Dialog>
     <Card className="flex flex-col overflow-hidden !rounded-lg border-border/30 bg-card">
         <CardHeader className="p-0">
-            <div className="bg-[#35393C] px-5 py-4">
+            <div className="bg-muted px-5 py-4">
                 <div className="flex w-full items-center justify-between">
                     <CardTitle className="w-4/5 text-base font-bold text-foreground">
                         {risk}
                     </CardTitle>
-                    <div className="flex items-center text-sm font-normal text-[color:var(--link-color)] hover:underline self-start">
-                        Portfolio <ArrowUpRight className="ml-1 h-5 w-5" />
+                    <div className="flex items-center text-sm font-normal">
+                        <Button variant="link" className="p-0 h-auto">
+                            Portfolio <ArrowUpRight className="ml-1 h-5 w-5" />
+                        </Button>
                     </div>
                 </div>
                 <Separator className="my-3 bg-border/20" />
@@ -196,9 +198,9 @@ export function PortfolioCard({
                 <InfoRow label="Total Profit/Loss" value={`${asset.totalProfitLoss}`} valueClassName="text-primary" />
                 <InfoRow label="Strategy Allocations">
                     <DialogTrigger asChild>
-                    <button className="font-semibold text-[color:var(--link-color)] hover:underline">
-                        View Details →
-                    </button>
+                        <Button variant="link" className="font-semibold p-0 h-auto">
+                            View Details →
+                        </Button>
                     </DialogTrigger>
                 </InfoRow>
             </div>
@@ -208,7 +210,7 @@ export function PortfolioCard({
             <Button variant="default" className="h-12 flex-1 rounded-md text-sm font-medium">
                 + Add Funds
             </Button>
-            <Button className="h-12 flex-[2] rounded-md bg-[#35393C] text-sm font-medium text-foreground hover:bg-secondary/80">
+            <Button variant="secondary" className="h-12 flex-[2] rounded-md text-sm font-medium text-foreground hover:bg-secondary/80">
                 Transfer Out to Trade account
             </Button>
         </CardFooter>
@@ -249,7 +251,7 @@ export function PortfolioCard({
                         <div className="rounded-md border mt-4">
                         <Table>
                             <TableHeader>
-                                <TableRow className="bg-secondary/30">
+                                <TableRow className="bg-muted">
                                     <TableHead className="font-semibold text-muted-foreground whitespace-nowrap text-sm">Strategy Type</TableHead>
                                     <TableHead className="text-right font-semibold text-muted-foreground whitespace-nowrap text-sm">Low-Risk BTC</TableHead>
                                     <TableHead className="text-right font-semibold text-muted-foreground whitespace-nowrap text-sm">Mid-Risk BTC</TableHead>
@@ -265,7 +267,7 @@ export function PortfolioCard({
                                 ))}
                             </TableBody>
                             <TableFooter>
-                                <TableRow className="bg-secondary/30">
+                                <TableRow className="bg-muted">
                                     <TableCell className="font-bold text-muted-foreground text-sm">Total</TableCell>
                                     <TableCell className="text-right font-bold text-foreground text-sm">100%</TableCell>
                                     <TableCell className="text-right font-bold text-foreground text-sm">100%</TableCell>
