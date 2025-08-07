@@ -219,11 +219,11 @@ export function ReceiveFunds() {
                     <Separator />
                     <p>Include your Memo code in the additional instructions of your wire. Failure to provide Memo code will significantly delay processing and may require you to contact Coinchange.</p>
                     <Separator />
-                    <p><strong>NOTE:</strong> Only transfers from U.S. banks in USD currency will be accepted.</p>
+                    <p><strong className="text-[#FBAD24]">NOTE:</strong> Only transfers from U.S. banks in USD currency will be accepted.</p>
                     <Separator />
-                    <p><strong>NOTE:</strong> ACH transfers not accepted.</p>
+                    <p><strong className="text-[#FBAD24]">NOTE:</strong> ACH transfers not accepted.</p>
                     <Separator />
-                    <p><strong>NOTE:</strong> Funding from third-party account is <strong>not permitted</strong>. Name on originating bank account must match the name on your Coinchange account.</p>
+                    <p><strong className="text-[#FBAD24]">NOTE:</strong> Funding from third-party account is <strong>not permitted</strong>. Name on originating bank account must match the name on your Coinchange account.</p>
                     <Separator />
                     <div>
                         <p className="text-foreground font-semibold">Transfer fees</p>
