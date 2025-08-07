@@ -21,8 +21,8 @@ export function DashboardHeader() {
   }, []);
 
   const navLinks = [
-    { href: "/", label: "Dashboard" },
-    { href: "/concept", label: "Dashboard V2" },
+    { href: "/", label: "Original" },
+    { href: "/concept", label: "Dashboard" },
     { href: "/dashboard-modal", label: "Modal" },
     { href: "/cards", label: "Cards" },
     { href: "/trade", label: "Trade" },
