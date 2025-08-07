@@ -5,8 +5,17 @@ import * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Copy, Printer } from "lucide-react";
+import { Copy, Printer, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { BtcIcon, EthIcon, UsdcIcon, TetherIcon, DaiIcon } from "@/components/icons/crypto-icons";
+import { cn } from "@/lib/utils";
+
 
 const UsFlagIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="512" height="512" viewBox="0 0 512 512" {...props}>
@@ -19,6 +28,44 @@ const UsFlagIcon = (props: React.SVGProps<SVGSVGElement>) => (
         </g>
     </svg>
 );
+
+const EuFlagIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" {...props}>
+        <g>
+            <circle cx="256" cy="256" r="256" fill="#0052b4"></circle>
+            <g fill="#ffda44">
+                <path d="m256.001 100.174 8.289 25.509h26.82l-21.699 15.765 8.289 25.509-21.699-15.766-21.7 15.766 8.289-25.509-21.699-15.765h26.821zM145.814 145.814l23.9 12.176 18.965-18.964-4.197 26.49 23.899 12.177-26.491 4.196-4.196 26.492-12.177-23.899-26.49 4.197 18.965-18.965zM100.175 256l25.509-8.289V220.89l15.764 21.7 25.51-8.289L151.191 256l15.767 21.699-25.51-8.288-15.764 21.699v-26.821zM145.814 366.186l12.177-23.9-18.964-18.965 26.491 4.198 12.175-23.899 4.197 26.491 26.49 4.196-23.896 12.177 4.195 26.49-18.965-18.965zM256.001 411.826l-8.29-25.509h-26.82l21.7-15.765-8.29-25.507 21.7 15.764 21.699-15.764-8.289 25.507 21.699 15.765h-26.821zM366.187 366.186l-23.899-12.176-18.966 18.965 4.197-26.492-23.897-12.176 26.49-4.196 4.196-26.491 12.176 23.899 26.49-4.198-18.965 18.967zM411.826 256l-25.509 8.289v26.821l-15.765-21.7-25.507 8.289L360.81 256l-15.765-21.699 25.508 8.289 15.764-21.7v26.822zM366.187 145.814l-12.177 23.9 18.965 18.965-26.492-4.198-12.175 23.899-4.196-26.491-26.49-4.197 23.897-12.176-4.197-26.489 18.967 18.964z" />
+            </g>
+        </g>
+    </svg>
+);
+
+const CaFlagIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" {...props}>
+    <g>
+      <circle cx="256" cy="256" r="256" fill="#f0f0f0"></circle>
+      <g fill="#d80027">
+        <path d="M512 256c0-101.494-59.065-189.19-144.696-230.598v461.195C452.935 445.19 512 357.494 512 256zM0 256c0 101.494 59.065 189.19 144.696 230.598V25.402C59.065 66.81 0 154.506 0 256zM300.522 289.391l44.521-22.261-22.26-11.13v-22.261L278.261 256l22.261-44.522h-22.261L256 178.087l-22.261 33.391h-22.261L233.739 256l-44.522-22.261V256l-22.26 11.13 44.521 22.261-11.13 22.261h44.522v33.391h22.26v-33.391h44.522z"></path>
+      </g>
+    </g>
+  </svg>
+);
+
+interface Currency {
+    id: string;
+    name: string;
+    balance: string;
+    icon: React.ElementType;
+}
+
+const currencyData: Currency[] = [
+    { id: 'usd', name: 'US Dollars', balance: '$0.00', icon: UsFlagIcon },
+    { id: 'eur', name: 'Euro', balance: '€0.00', icon: EuFlagIcon },
+    { id: 'cad', name: 'CAD', balance: 'CA$0.00', icon: CaFlagIcon },
+    { id: 'btc', name: 'Bitcoin', balance: '0.0001 BTC', icon: BtcIcon },
+    { id: 'eth', name: 'Ethereum', balance: '0.002 ETH', icon: EthIcon },
+    { id: 'usdc', name: 'USD Coin', balance: '200 USDC', icon: UsdcIcon },
+];
 
 interface DetailRowProps {
   label: string;
@@ -58,6 +105,8 @@ const DetailRow: React.FC<DetailRowProps> = ({ label, value }) => {
 
 
 export function ReceiveFunds() {
+  const [selectedCurrency, setSelectedCurrency] = React.useState<Currency>(currencyData[0]);
+
   const bankDetails = [
     { label: "Bank Name", value: "Lead Bank" },
     { label: "Bank Address", value: ["1801 Main St., Kansas City, MO 64108,", "United States of America"] },
@@ -79,27 +128,47 @@ export function ReceiveFunds() {
     });
   };
 
+  const SelectedIcon = selectedCurrency.icon;
+
   return (
     <div>
         <h1 className="text-3xl font-bold tracking-tight mb-6">Receive Funds</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <div className="lg:col-span-2 space-y-6">
-                <Card>
-                    <CardContent className="p-4">
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                                <UsFlagIcon className="h-10 w-10 rounded-full" />
-                                <div>
-                                    <p className="font-semibold">US Dollars</p>
-                                    <p className="text-sm text-muted-foreground">Balance $0.00</p>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Card className="cursor-pointer hover:bg-muted/50 transition-colors">
+                            <CardContent className="p-4">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <SelectedIcon className="h-10 w-10 rounded-full" />
+                                        <div>
+                                            <p className="font-semibold">{selectedCurrency.name}</p>
+                                            <p className="text-sm text-muted-foreground">Balance {selectedCurrency.balance}</p>
+                                        </div>
+                                    </div>
+                                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
                                 </div>
-                            </div>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </div>
-                    </CardContent>
-                </Card>
+                            </CardContent>
+                        </Card>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width]">
+                        {currencyData.map((currency) => {
+                             const Icon = currency.icon;
+                             return (
+                                <DropdownMenuItem key={currency.id} onSelect={() => setSelectedCurrency(currency)}>
+                                    <div className="flex items-center gap-3 w-full">
+                                        <Icon className="h-10 w-10 rounded-full" />
+                                        <div>
+                                            <p className="font-semibold">{currency.name}</p>
+                                            <p className="text-sm text-muted-foreground">Balance {currency.balance}</p>
+                                        </div>
+                                    </div>
+                                </DropdownMenuItem>
+                             )
+                        })}
+                    </DropdownMenuContent>
+                </DropdownMenu>
                 
                 <div>
                     <h2 className="text-lg font-semibold mb-2">Wire Transfer</h2>
