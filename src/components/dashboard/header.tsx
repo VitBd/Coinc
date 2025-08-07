@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -24,6 +25,7 @@ export function DashboardHeader() {
     { href: "/concept", label: "Dashboard V2" },
     { href: "/dashboard-modal", label: "Modal" },
     { href: "/cards", label: "Cards" },
+    { href: "/trade", label: "Trade" },
   ];
 
   return (
